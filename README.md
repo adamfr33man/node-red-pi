@@ -20,14 +20,13 @@ sudo ./install.sh
 
 This will also make Node-Red and Mosca run on startup, you can stop/start restart them using:
 ```
-sudo stop mosca
-sudo stop node-red
+node-red
+```
 
-sudo start mosca
-sudo start node-red
+To run Mosca with websockets enabled do this
 
-sudo restart mosca
-sudo restart node-red
+```
+mosca -v --http-port 3000 --http-bundle --http-static ./ | bunyan
 ```
 
 It takes a little while to install all the dependancies through npm, but if you are doing this alot then you could image a built version and use that
@@ -40,8 +39,7 @@ It takes a little while to install all the dependancies through npm, but if you 
   * Bunyan - Pretty logging from Mosca
   * Freeboard - A realtime dashboard plugin
 
-## Logging
+## Todo
 
-You can find the log files at these locations:
-```
-```
+  * Get this to log files
+  * Get it to startup on boot
