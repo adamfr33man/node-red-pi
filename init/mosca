@@ -1,52 +1,50 @@
 #! /bin/sh
-# Starts and stops Node-RED
-# /etc/init.d/nodered
+# Starts and stops Mosca
+# /etc/init.d/mosca
 ### BEGIN INIT INFO
-# Provides:     node-red
+# Provides:     mosca
 # Required-Start:       $syslog
 # Required-Stop:        $syslog
 # Default-Start:        2 3 4 5
 # Default-Stop:         0 1 6
-# Short-Description:    Node-RED initialisation
+# Short-Description:    Mosca initialisation
 ### END INIT INFO
 # This runs as the user called pi - please change as you require
 USER=pi
  
 # The log is written to here - please make sure your user has write permissions.
-LOG=/var/log/node-red.log
+LOG=/var/log/mosca.log
 
-#Load up node red when called
+#Load up mosca when called
 case "$1" in
  
 start)
-    if pgrep ^node-red$ > /dev/null
+    if pgrep ^mosca$ > /dev/null
     then
-        echo "Node-RED already running."
+        echo "Mosca already running."
     else
-        echo "Starting Node-Red.."
+        echo "Starting Mosca.."
         touch $LOG
         chown $USER:$USER $LOG
         echo "" >> $LOG
-        echo "Node-RED service start: "$(date) >> $LOG
-#        su -l $USER -c "cd ~/.node-red && screen -dmS red node-red-pi --max-old-space-size=128"
-# or
-        su -l $USER -c "node-red-pi --max-old-space-size=128 -u ~/.node-red >> $LOG &"
+        echo "Mosca service start: "$(date) >> $LOG
+
+        su -l $USER -c "mosca -v --http-port 3000 --http-bundle --http-static ./ | bunyan >> $LOG &"
         echo "Logging to "$LOG
     fi
 ;;
  
 stop)
-    echo "Stopping Node-Red.."
-#        su -l $USER -c "screen -S red -X quit"
-# or
-    pkill -SIGINT ^node-red$
+    echo "Stopping Mosca.."
+
+    pkill -SIGINT ^mosca$
     sleep 2
     echo "" >> $LOG
     echo "Node-RED service stop: "$(date) >> $LOG
 ;;
  
 restart)
-        echo "Restarting Node-Red.."
+        echo "Restarting Mosca.."
         $0 stop
         sleep 2
         $0 start
