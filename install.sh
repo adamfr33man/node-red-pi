@@ -10,7 +10,7 @@ apt-get install -y git-core git scons build-essential scons libpcre++-dev libboo
 echo 'Getting the most recent version of Node'
 PACKAGE=node_latest_armhf.deb
 echo 'Downloading Node ...'
-wget http://node-arm.herokuapp.com/$PACKAGE
+wget http://node-arm.herokuapp.com/$PACKAGE -O $PACKAGE
 
 echo 'Installing Node...'
 dpkg -i $PACKAGE
@@ -20,17 +20,25 @@ node -v
 echo 'npm version:'
 npm -v
 
-# Install Node-red, Mosca and plugins for Node-red
-echo 'Installing Node-Red Dependancies'
+# Install Node-RED, Mosca and plugins for Node-RED
+echo 'Installing Node-RED Dependancies'
 npm install -g mosca bunyan
-# Isntalling Node-red
-echo 'Installing Node-Red'
+# Isntalling Node-RED
+echo 'Installing Node-RED'
 npm install -g node-red
-echo 'Installing Node-Red plugins'
+echo 'Installing Node-RED plugins'
 npm install -g node-red-contrib-freeboard
 
 # Add startup scripts
-echo 'TODO: Setup startup scripts here.'
+echo 'Copying startup scripts'
+cp init/mosca /etc/init.d/
+cp init/node-red /etc/init.d/
+
+# Start services
+echo 'Starting Mosca...'
+service start mosca
+echo 'Starting Node-RED...'
+service start node-red
 
 # All done
 echo 'Finished !'

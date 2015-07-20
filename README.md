@@ -20,20 +20,22 @@ sudo ./install.sh
 
 __This will take about half an hour to install__
 
+It takes a little while to install all the dependencies through npm, but if you are doing this a lot then you could image a built version and use that.
+
 ## Usage
 
-Next startup Node-RED:
-```
-node-red &
-```
-
-To run Mosca with websockets enabled do this
+Mosca and Node-RED are installed as services and should start when you boot the Pi. If you want to start/stop them manually then you can do this like so:
 
 ```
-mosca -v --http-port 3000 --http-bundle --http-static ./ | bunyan &
-```
+sudo start mosca
+sudo start node-red
 
-It takes a little while to install all the dependencies through npm, but if you are doing this a lot then you could image a built version and use that
+sudo stop mosca
+sudo stop node-red
+
+sudo restart mosca
+sudo restart node-red
+```
 
 ## What does it include
 
