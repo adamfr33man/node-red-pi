@@ -1,8 +1,8 @@
 # node-red-pi
 
-An easy way to get up and running with Node-RED on the Raspberry Pi
+An easy way to get up and running with Node-RED on the Raspberry Pi. It also has [mosca](https://www.npmjs.com/package/mosca) which is an MQTT broker and a [freeboard plugin](https://www.npmjs.com/package/node-red-contrib-freeboard) installed to allow you to quickly setup realtime Dashboards.
 
-## Why this ?
+## Why did I put this together ?
 
 I was looking into [thethingbox](http://thethingbox.io/) but found a few things too limiting for my usage. Hopefully they can address these soon.
 
@@ -79,8 +79,11 @@ datasources["node-red-timer"]
 
 Click save and you should be able to see the timestamp change every 5 seconds. click 'SAVE FREEBOARD' then you can share it by URL.
 
+## Logging
 
-## Todo
+The log files are in /var/log as below
 
-  * Get this to log files
-  * Get it to startup on boot
+```
+/var/log/mosca.sys.log
+/var/log/node-red.sys.log
+```
