@@ -19,10 +19,6 @@ LOG=/var/log/node-red.log
 case "$1" in
  
 start)
-    if pgrep ^node-red$ > /dev/null
-    then
-        echo "Node-RED already running."
-    else
         echo "Starting Node-Red.."
         touch $LOG
         chown $USER:$USER $LOG
@@ -32,7 +28,6 @@ start)
 # or
         su -l $USER -c "node-red-pi --max-old-space-size=128 -u ~/.node-red >> $LOG &"
         echo "Logging to "$LOG
-    fi
 ;;
  
 stop)

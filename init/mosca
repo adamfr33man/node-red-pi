@@ -19,10 +19,6 @@ LOG=/var/log/mosca.log
 case "$1" in
  
 start)
-    if pgrep ^mosca$ > /dev/null
-    then
-        echo "Mosca already running."
-    else
         echo "Starting Mosca.."
         touch $LOG
         chown $USER:$USER $LOG
@@ -31,7 +27,6 @@ start)
 
         su -l $USER -c "mosca -v --http-port 3000 --http-bundle --http-static ./ | bunyan >> $LOG &"
         echo "Logging to "$LOG
-    fi
 ;;
  
 stop)

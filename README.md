@@ -27,14 +27,11 @@ It takes a little while to install all the dependencies through npm, but if you 
 Mosca and Node-RED are installed as services and should start when you boot the Pi. If you want to start/stop them manually then you can do this like so:
 
 ```
-sudo start mosca
-sudo start node-red
+sudo service mosca start
+sudo service node-red start
 
-sudo stop mosca
-sudo stop node-red
-
-sudo restart mosca
-sudo restart node-red
+sudo service mosca stop
+sudo service node-red stop
 ```
 
 ## What does it include

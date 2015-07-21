@@ -33,6 +33,9 @@ npm install -g node-red-contrib-freeboard
 echo 'Copying startup scripts'
 cp init/mosca /etc/init.d/
 cp init/node-red /etc/init.d/
+# Add them into the approriate run levels
+update-rc.d mosca defaults
+update-rc.d node-red defaults
 
 # Start services
 echo 'Starting Mosca...'
